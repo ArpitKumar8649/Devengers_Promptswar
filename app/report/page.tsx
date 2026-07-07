@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   Camera,
@@ -25,6 +26,17 @@ import type { IssueAnalysis, Severity, Complaint } from "@/lib/types";
 import { saveComplaint, newTrackingId } from "@/lib/store";
 import { useAuth } from "@/lib/auth";
 import { pushComplaintToCloud } from "@/lib/sync";
+import type { DetectedLocation } from "@/components/location-picker";
+
+// Leaflet map is client-only.
+const LocationPicker = dynamic(() => import("@/components/location-picker"), {
+  ssr: false,
+  loading: () => (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/50">
+      Loading map…
+    </div>
+  ),
+});
 
 function severityStyle(sev: Severity) {
   if (sev <= 2)
@@ -60,7 +72,7 @@ export default function ReportPage() {
   const [trackingId, setTrackingId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
-  const [city, setCity] = useState("Chennai");
+  const [location, setLocation] = useState<DetectedLocation | null>(null);
 
   function reset() {
     setFile(null);
@@ -70,6 +82,7 @@ export default function ReportPage() {
     setError(null);
     setCopied(false);
     setShowEnglish(false);
+    setLocation(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
@@ -117,7 +130,8 @@ export default function ReportPage() {
           image: dataUrl,
           mode: "report",
           language: lang.name,
-          city,
+          city: location?.city ?? "Default",
+          locationText: location?.address ?? null,
         }),
       });
       if (!res.ok) {
@@ -218,7 +232,7 @@ export default function ReportPage() {
               <Camera className="h-8 w-8 text-saffron" />
             </div>
             <div>
-              <p className="font-semibold text-white">Take or upload a photo</p>
+              <p className="font-semibold text-white">Take a photo of the issue</p>
               <p className="text-sm text-white/60">Pothole, garbage, broken light… anything.</p>
             </div>
             <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
@@ -227,7 +241,7 @@ export default function ReportPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-saffron px-5 py-3 font-semibold text-ink transition active:scale-[0.98]"
               >
                 <Camera className="h-5 w-5" />
-                Take / Upload Photo
+                Take Photo
               </button>
               <button
                 onClick={useSample}
@@ -253,24 +267,7 @@ export default function ReportPage() {
                 className="max-h-80 w-full object-cover"
               />
             </div>
-            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
-              <MapPin className="h-4 w-4 shrink-0 text-saffron" />
-              <label htmlFor="city" className="text-sm text-white/60">
-                Your city
-              </label>
-              <select
-                id="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className="ml-auto rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white outline-none focus:ring-2 focus:ring-saffron/40"
-              >
-                {["Chennai", "Mumbai", "Delhi", "Bengaluru", "Other"].map((c) => (
-                  <option key={c} value={c === "Other" ? "Default" : c} className="bg-ink">
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <LocationPicker onChange={setLocation} />
             <div className="flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={analyze}

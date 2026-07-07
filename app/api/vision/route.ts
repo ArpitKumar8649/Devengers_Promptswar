@@ -72,14 +72,20 @@ function normalizeDoc(raw: Record<string, unknown>): DocAnalysis {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { image?: string; mode?: "report" | "document"; language?: string; city?: string };
+  let body: {
+    image?: string;
+    mode?: "report" | "document";
+    language?: string;
+    city?: string;
+    locationText?: string | null;
+  };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { image, mode, language, city } = body;
+  const { image, mode, language, city, locationText } = body;
   if (!image) {
     return NextResponse.json({ error: "No image provided." }, { status: 400 });
   }
@@ -112,8 +118,11 @@ Write plainSummary in ${lang}. Be honest and reassuring. JSON only.`;
   }
 
   // Default: report mode
+  const locationLine = locationText
+    ? `The citizen's detected location is: "${locationText}". Mention this location naturally in the complaint letters.`
+    : "";
   const system = `You are "Saathi", an AI municipal grievance officer for Indian cities. You look at a photo of a civic problem and produce a filed-ready complaint. Reply ONLY with valid JSON.`;
-  const instruction = `Analyse this photo of a civic issue in an Indian city (${cityName}). Choose the single most appropriate department from this list:
+  const instruction = `Analyse this photo of a civic issue in an Indian city (${cityName}). ${locationLine} Choose the single most appropriate department from this list:
 ${DEPT_LIST}
 
 Return ONLY JSON exactly matching this shape:
