@@ -23,6 +23,8 @@ import { cn } from "@/lib/utils";
 import { fileToResizedDataUrl } from "@/lib/image";
 import type { IssueAnalysis, Severity, Complaint } from "@/lib/types";
 import { saveComplaint, newTrackingId } from "@/lib/store";
+import { useAuth } from "@/lib/auth";
+import { pushComplaintToCloud } from "@/lib/sync";
 
 function severityStyle(sev: Severity) {
   if (sev <= 2)
@@ -46,6 +48,7 @@ function severityStyle(sev: Severity) {
 
 export default function ReportPage() {
   const { lang } = useLanguage();
+  const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [file, setFile] = useState<File | null>(null);
@@ -143,6 +146,8 @@ export default function ReportPage() {
         language: lang.name,
       };
       saveComplaint(complaint);
+      // Best-effort cloud sync when signed in — never blocks the UI.
+      void pushComplaintToCloud(user, complaint);
       setTrackingId(id);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");

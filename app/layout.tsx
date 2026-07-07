@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
-import Nav from "@/components/nav";
+import { AuthProvider } from "@/lib/auth";
+import AppGate from "@/components/app-gate";
 
 export const metadata: Metadata = {
   title: "Smart Bharat — AI Civic Companion",
@@ -17,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        <LanguageProvider>
-          <Nav />
-          {children}
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <AppGate>{children}</AppGate>
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   );

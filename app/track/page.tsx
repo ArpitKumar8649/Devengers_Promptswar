@@ -7,10 +7,13 @@ import {
   seedIfEmpty,
   advanceStatus,
   newTrackingId,
+  upsertComplaints,
   STATUS_ORDER,
 } from "@/lib/store";
 import type { Complaint, ComplaintStatus, Severity } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth";
+import { pullComplaintsFromCloud } from "@/lib/sync";
 import {
   MapPin,
   Trash2,
@@ -151,6 +154,7 @@ function StatusTimeline({ status }: { status: ComplaintStatus }) {
 }
 
 export default function TrackPage() {
+  const { user } = useAuth();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -163,6 +167,21 @@ export default function TrackPage() {
     refresh();
     setMounted(true);
   }, [refresh]);
+
+  // When signed in, merge any cloud-synced complaints into the local list.
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    pullComplaintsFromCloud(user).then((cloud) => {
+      if (!cancelled && cloud.length) {
+        upsertComplaints(cloud);
+        refresh();
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [user, refresh]);
 
   useEffect(() => {
     if (!mounted) return;

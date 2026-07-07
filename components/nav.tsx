@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { LANGUAGES, useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { MessageCircle, Camera, Target, FileText, ListChecks, Home } from "lucide-react";
+import AuthButton from "@/components/auth-button";
 
 const LINKS = [
-  { href: "/", label: "Home", icon: Home },
+  { href: "/dashboard", label: "Home", icon: Home },
   { href: "/chat", label: "Baat Karo", icon: MessageCircle },
   { href: "/report", label: "Samasya", icon: Camera },
   { href: "/schemes", label: "Yojana", icon: Target },
@@ -22,7 +23,7 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3">
-        <Link href="/" className="mr-2 flex items-center gap-2 font-bold">
+        <Link href="/dashboard" className="mr-2 flex items-center gap-2 font-bold">
           <span className="text-lg">🇮🇳</span>
           <span className="bg-gradient-to-r from-saffron via-white to-indiagreen bg-clip-text text-transparent">
             Smart Bharat
@@ -51,7 +52,7 @@ export default function Nav() {
           })}
         </nav>
 
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-2">
           <select
             value={lang.code}
             onChange={(e) => setLang(e.target.value)}
@@ -64,6 +65,7 @@ export default function Nav() {
               </option>
             ))}
           </select>
+          <AuthButton />
         </div>
       </div>
 

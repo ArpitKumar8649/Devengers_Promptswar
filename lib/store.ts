@@ -52,4 +52,16 @@ export function seedIfEmpty(seed: Complaint[]) {
   }
 }
 
+/** Merge in complaints (e.g. pulled from the cloud), de-duped by id. Returns the merged list. */
+export function upsertComplaints(incoming: Complaint[]): Complaint[] {
+  const all = loadComplaints();
+  const byId = new Map(all.map((c) => [c.id, c]));
+  for (const c of incoming) {
+    if (!byId.has(c.id)) byId.set(c.id, c);
+  }
+  const merged = Array.from(byId.values()).sort((a, b) => b.createdAt - a.createdAt);
+  localStorage.setItem(KEY, JSON.stringify(merged));
+  return merged;
+}
+
 export { STATUS_ORDER };
