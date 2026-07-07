@@ -1,0 +1,82 @@
+[
+  {
+    "name": "PM-KISAN Samman Nidhi",
+    "category": "Farmer Income Support",
+    "benefit": "₹6,000 / year (₹2,000 in 3 installments)",
+    "eligibility": "Small & marginal landholding farmer families with cultivable land",
+    "documents": ["Aadhaar Card", "Land ownership records", "Bank account passbook"],
+    "department": "Agriculture & Farmers Welfare"
+  },
+  {
+    "name": "Ayushman Bharat (PM-JAY)",
+    "category": "Health Insurance",
+    "benefit": "₹5,00,000 / family / year health cover",
+    "eligibility": "Economically weaker / SECC-listed families, low-income households",
+    "documents": ["Aadhaar Card", "Ration Card", "SECC / income proof"],
+    "department": "Health & Family Welfare"
+  },
+  {
+    "name": "PM Awas Yojana (Gramin/Urban)",
+    "category": "Housing",
+    "benefit": "₹1,20,000–₹2,50,000 assistance to build/buy a home",
+    "eligibility": "Homeless or households without a pucca house, EWS/LIG income group",
+    "documents": ["Aadhaar Card", "Income certificate", "Bank account passbook"],
+    "department": "Housing & Urban Affairs"
+  },
+  {
+    "name": "National Scholarship (NSP) — Post Matric",
+    "category": "Education Scholarship",
+    "benefit": "Tuition + maintenance allowance (varies by course)",
+    "eligibility": "SC/ST/OBC/Minority or low-income students in class 11 and above",
+    "documents": ["Aadhaar Card", "Income certificate", "Caste certificate", "Marksheet", "Bank passbook"],
+    "department": "Social Justice & Empowerment"
+  },
+  {
+    "name": "Indira Gandhi National Widow Pension",
+    "category": "Social Security Pension",
+    "benefit": "₹300–₹500 / month (varies by state)",
+    "eligibility": "Widows aged 40+ from BPL households",
+    "documents": ["Aadhaar Card", "Death certificate of spouse", "BPL / income proof", "Bank passbook"],
+    "department": "Social Justice & Empowerment"
+  },
+  {
+    "name": "Indira Gandhi National Old Age Pension",
+    "category": "Social Security Pension",
+    "benefit": "₹200–₹500 / month (higher after age 80)",
+    "eligibility": "Citizens aged 60+ from BPL households",
+    "documents": ["Aadhaar Card", "Age proof", "BPL / income proof", "Bank passbook"],
+    "department": "Social Justice & Empowerment"
+  },
+  {
+    "name": "PM Ujjwala Yojana",
+    "category": "Cooking Gas / Women Welfare",
+    "benefit": "Free LPG connection + first refill & stove support",
+    "eligibility": "Adult women from BPL / low-income households without an LPG connection",
+    "documents": ["Aadhaar Card", "BPL ration card", "Bank account passbook"],
+    "department": "Petroleum & Natural Gas"
+  },
+  {
+    "name": "Sukanya Samriddhi Yojana",
+    "category": "Girl Child Savings",
+    "benefit": "High-interest savings account for a girl child (tax-free)",
+    "eligibility": "Parents/guardians of a girl child below age 10",
+    "documents": ["Girl child birth certificate", "Guardian Aadhaar/ID", "Address proof"],
+    "department": "Finance / India Post & Banks"
+  },
+  {
+    "name": "PM Mudra Yojana",
+    "category": "Small Business Loan",
+    "benefit": "Collateral-free loans up to ₹10,00,000 (Shishu/Kishor/Tarun)",
+    "eligibility": "Non-corporate small/micro enterprises and aspiring entrepreneurs",
+    "documents": ["Aadhaar Card", "Business plan / proof", "Bank account passbook"],
+    "department": "Finance / MUDRA Banks"
+  },
+  {
+    "name": "e-Shram Card (Unorganised Workers)",
+    "category": "Worker Welfare",
+    "benefit": "Accident insurance ₹2,00,000 + access to welfare schemes",
+    "eligibility": "Unorganised sector workers aged 16–59 (labourers, vendors, gig workers)",
+    "documents": ["Aadhaar Card", "Bank account passbook", "Mobile number"],
+    "department": "Labour & Employment"
+  }
+]

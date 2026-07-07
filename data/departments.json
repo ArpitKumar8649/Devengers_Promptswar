@@ -1,0 +1,74 @@
+[
+  {
+    "department": "Roads & Infrastructure",
+    "handles": ["pothole", "broken road", "damaged footpath", "road cave-in", "missing manhole cover"],
+    "authorityByCity": {
+      "Chennai": "Greater Chennai Corporation — Roads Dept",
+      "Mumbai": "Brihanmumbai Municipal Corporation (BMC) — Roads",
+      "Delhi": "Public Works Department (PWD), Delhi",
+      "Bengaluru": "BBMP — Road Infrastructure",
+      "Default": "Municipal Corporation — Roads Department"
+    }
+  },
+  {
+    "department": "Solid Waste Management",
+    "handles": ["garbage", "overflowing bin", "waste dumping", "dead animal", "uncollected trash"],
+    "authorityByCity": {
+      "Chennai": "Greater Chennai Corporation — SWM",
+      "Mumbai": "BMC — Solid Waste Management",
+      "Delhi": "MCD — Sanitation",
+      "Bengaluru": "BBMP — Solid Waste Management",
+      "Default": "Municipal Corporation — Sanitation Department"
+    }
+  },
+  {
+    "department": "Street Lighting / Electrical",
+    "handles": ["broken streetlight", "dark street", "exposed wire", "electric pole fault"],
+    "authorityByCity": {
+      "Chennai": "Greater Chennai Corporation — Electrical",
+      "Mumbai": "BMC — Street Lighting",
+      "Delhi": "MCD — Electrical Wing",
+      "Bengaluru": "BESCOM / BBMP — Street Lighting",
+      "Default": "Municipal Corporation — Electrical Department"
+    }
+  },
+  {
+    "department": "Water Supply & Sewerage",
+    "handles": ["water leak", "pipe burst", "sewage overflow", "no water supply", "contaminated water", "waterlogging"],
+    "authorityByCity": {
+      "Chennai": "CMWSSB (Metro Water)",
+      "Mumbai": "BMC — Hydraulic Engineering",
+      "Delhi": "Delhi Jal Board",
+      "Bengaluru": "BWSSB",
+      "Default": "Municipal Water Supply & Sewerage Board"
+    }
+  },
+  {
+    "department": "Parks & Public Spaces",
+    "handles": ["broken bench", "damaged park", "fallen tree", "encroachment"],
+    "authorityByCity": {
+      "Default": "Municipal Corporation — Horticulture / Parks Department"
+    }
+  },
+  {
+    "department": "Traffic & Signals",
+    "handles": ["broken traffic signal", "missing sign board", "faded road markings"],
+    "authorityByCity": {
+      "Default": "Traffic Police / Municipal Traffic Engineering"
+    }
+  },
+  {
+    "department": "Public Health",
+    "handles": ["mosquito breeding", "open drain", "stagnant water", "public toilet issue"],
+    "authorityByCity": {
+      "Default": "Municipal Corporation — Public Health Department"
+    }
+  },
+  {
+    "department": "Stray Animals",
+    "handles": ["stray dogs", "cattle on road", "animal menace"],
+    "authorityByCity": {
+      "Default": "Municipal Corporation — Animal Control / Veterinary"
+    }
+  }
+]
