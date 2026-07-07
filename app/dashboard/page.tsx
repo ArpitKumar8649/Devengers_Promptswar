@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth";
+import SaathiBot from "@/components/saathi-bot";
 import {
   Camera,
   MessageCircle,
@@ -104,9 +105,7 @@ export default function DashboardPage() {
     user?.email?.split("@")[0] ||
     "";
 
-  const greeting = user
-    ? `Namaste, ${firstName} 👋`
-    : "Namaste 👋 (Demo Mode)";
+  const greeting = user ? `Namaste, ${firstName} 👋` : "Namaste 👋";
 
   return (
     <main className="mx-auto max-w-6xl px-5 pb-20 pt-8 sm:pt-12">
@@ -181,6 +180,8 @@ export default function DashboardPage() {
         <span aria-hidden className="text-white/20">·</span>
         <span>powered by Qwen</span>
       </p>
+
+      <SaathiBot />
     </main>
   );
 }
